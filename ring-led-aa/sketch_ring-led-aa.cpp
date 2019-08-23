@@ -103,6 +103,23 @@ void wiggle(void) { // ( n -- )
 
 // - - - -   populate stack sample values   - - -
 void populate_stack_for_test(void) {
+  int n = -299;
+/*
+  push(n); // can push initial value n, here
+*/
+
+/*
+  n = -200; push(n);
+*/
+
+  n = -107; push(n);
+  n = -106; push(n);
+  n = -105; push(n);
+  n = -104; push(n);
+  n = -103; push(n);
+  n = -102; push(n);
+  n = -101; push(n);
+  n = -100; push(n);
 }
 
 // - - - -   printing   - - - -
@@ -125,15 +142,24 @@ void setup_gpio(void) {
   output();
 }
 
+#undef WAIT_SERIAL
+#define WAIT_SERIAL
+
 void setup_serial(void) {
   Serial.begin(9600);
-  // while (!Serial); // hold for activity
+
+#ifdef WAIT_SERIAL
+  while (!Serial); // hold for activity
+#endif
+
   delay(500);
   Serial.println("Serial active.");
 }
 
+void stack_demo(void) {
+}
+
 void setup(void) {
-  setup_serial();
   setup_gpio();
   led_off(); // initially off
 
@@ -149,8 +175,14 @@ void setup(void) {
   wiggle(); // let them know
 #endif
 
+  setup_serial();
+
+// stack_demo();
   populate_stack_for_test();
   print_stack();
+  int n = -705; push(n); print_stack();
+  n = -605;     push(n); print_stack();
+
 }
 
 void loop(void) {
