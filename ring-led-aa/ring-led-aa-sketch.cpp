@@ -9,14 +9,17 @@ const int STKMASK = 7;
 int stack[STKSIZE];
 int p = 0;
 
+/* TOS is Top Of Stack */
+#define TOS stack[p]
 
-/*
- 63 // push n to top of data stack
- 64 void push(int n) {
- 65   p = (p + 1)& STKMASK;
- 66   TOS = n;
- 67 }
-*/
+
+
+// push n to top of data stack
+void push(int n) {
+  p = (p + 1)& STKMASK;
+  TOS = n;
+}
+
 
 /*
  69 // return top of stack
