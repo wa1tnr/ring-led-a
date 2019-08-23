@@ -10,6 +10,14 @@
  42 int p = 0;
 */
 
+/*
+ 63 // push n to top of data stack
+ 64 void push(int n) {
+ 65   p = (p + 1)& STKMASK;
+ 66   TOS = n;
+ 67 }
+*/
+
 void setup(void) {
 }
 
