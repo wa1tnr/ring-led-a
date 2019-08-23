@@ -180,8 +180,9 @@ void setup(void) {
 // stack_demo();
   populate_stack_for_test();
   print_stack();
-  int n = -705; push(n); print_stack();
-  n = -605;     push(n); print_stack();
+  Serial.println(" - - -");
+  int n = -705; push(n); print_stack(); Serial.println(" - - -");
+  n = -605;     push(n); print_stack(); // Serial.println(" - - -");
 
 }
 
