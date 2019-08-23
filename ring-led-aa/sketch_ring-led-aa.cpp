@@ -23,13 +23,14 @@ int p = 0;
 /* TOS is Top Of Stack */
 #define TOS stack[p]
 
+// Note: TOS can by any element of the stack[] array!
+// In particular, it is often not the same as stack[0] (as one might expect).
 
 // push n to top of data stack
 void push(int n) {
   p = (p + 1)& STKMASK;
   TOS = n;
 }
-
 
 // return top of stack
 int pop(void) {
@@ -107,16 +108,18 @@ void setup(void) {
   led_off(); // initially off
 
 #ifdef NO_WIGGLE
-  delay(200); led_on(); delay(200); led_off();
-  delay(200); led_on(); delay(200); led_off(); delay(200);
+  delay(200);
+  led_on(); delay(200); led_off(); delay(200);
+  led_on(); delay(200); led_off(); delay(200);
 #endif
 
 #ifndef NO_WIGGLE
-  delay(5000);
+  delay(2500);
   push(LED);
   wiggle(); // let them know
 #endif
 }
 
 void loop(void) {
+  // everything is done in setup() at the moment
 }
