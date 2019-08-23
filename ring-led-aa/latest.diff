@@ -1,0 +1,90 @@
+diff --git a/ring-led-aa/ring-led-aa-sketch.cpp b/ring-led-aa/ring-led-aa-sketch.cpp
+index ade7ea7..8582222 100644
+--- a/ring-led-aa/ring-led-aa-sketch.cpp
++++ b/ring-led-aa/ring-led-aa-sketch.cpp
+@@ -1,6 +1,8 @@
+ // ring-led-aa-sketch.cpp
+ // 23 August 2019  14:43 UTC
+ 
++// test platform: ItsyBitsyM4
++
+ #include <Arduino.h>
+ #define LED 13 // D13
+ 
+@@ -31,36 +33,60 @@ int pop() {
+ }
+ 
+ 
++int spd = 44;
++
++/*
++ 86 // Global delay timer
++ 87 // int spd = 100; // 15;
++ 88 int spd = 44;
++*/
++
++
++
+ 
+ // make TOS pin an output
+ void output() {
+-// 111   push(TOS);
++  push(LED);
+   pinMode(pop(), OUTPUT);
+ }
+ 
+ 
+ 
+ void led_off(void) {
+-// 226   int a = pop();
+-// 232   digitalWrite(a, LOW);
++  push(LED);
++  int a = pop();
++  digitalWrite(a, LOW);
+ }
+ 
++
++void delay(void) {}
++void defspeed(void) {}
++
+ /*
+-223 // Toggle pin at TOS and delay(spd), repeat...
+-224 NAMED(_wiggle, "wiggle");
+-225 void wiggle() {
+-226   int a = pop();
+-227   pinMode(a, OUTPUT);
+-228   for (int i = 0; i < 20; i++) {
+-229     digitalWrite(a, HIGH);
+-230     defspeed();
+-231     delay(spd); // delay(100);
+-232     digitalWrite(a, LOW);
+-233     delay(spd); // delay(100);
+-234   }
+-235 }
++213 // delay TOS # of milliseconds
++214 NAMED(_delay, "delay");
++215 void del() {
++216   delay(pop());
++217 }
++218 
++219 void defspeed() {
++220     if ((spd < 2) || (spd > 22333) ) { spd = 100; }
++221 }
+ */
+ 
++// Toggle pin at TOS and delay(spd), repeat...
++void wiggle(void) {
++  int a = pop();
++  pinMode(a, OUTPUT);
++  for (int i = 0; i < 20; i++) {
++    digitalWrite(a, HIGH);
++    defspeed();
++    delay(spd); // delay(100);
++    digitalWrite(a, LOW);
++    delay(spd); // delay(100);
++  }
++}
++
+ void setup_gpio(void) {
+   output();
+ }
