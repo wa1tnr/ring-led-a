@@ -38,9 +38,8 @@ int pop(void) {
 int spd = 44;
 
 
-// make TOS pin an output
+// set the pin named in the TOS (top of stack) to OUTPUT (push-pull) mode
 void output(void) {
-  push(LED);
   pinMode(pop(), OUTPUT);
 }
 
@@ -49,6 +48,12 @@ void led_off(void) {
   push(LED);
   int a = pop();
   digitalWrite(a, LOW);
+}
+
+void led_on(void) {
+  push(LED);
+  int a = pop();
+  digitalWrite(a, HIGH);
 }
 
 
@@ -81,6 +86,7 @@ void wiggle(void) {
 }
 
 void setup_gpio(void) {
+  push(LED); // say which port pin's mode is to be set as an output, now
   output();
 }
 
