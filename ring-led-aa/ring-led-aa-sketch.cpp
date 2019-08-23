@@ -9,6 +9,7 @@
 #define LED 13 // D13 // Metro vs ItsyBitsy here - TODO
 
 
+// STKSIZE is always a power of two; STKMASK is one less than STKSIZE
 const int STKSIZE = 8;
 const int STKMASK = 7;
 int stack[STKSIZE];
@@ -18,7 +19,6 @@ int p = 0;
 #define TOS stack[p]
 
 
-
 // push n to top of data stack
 void push(int n) {
   p = (p + 1)& STKMASK;
@@ -26,32 +26,23 @@ void push(int n) {
 }
 
 
-
 // return top of stack
-int pop() {
+int pop(void) {
   int n = TOS;
   p = (p - 1)& STKMASK;
   return n;
 }
 
 
+// Global delay timer
 int spd = 44;
-
-/*
- 86 // Global delay timer
- 87 // int spd = 100; // 15;
- 88 int spd = 44;
-*/
-
-
 
 
 // make TOS pin an output
-void output() {
+void output(void) {
   push(LED);
   pinMode(pop(), OUTPUT);
 }
-
 
 
 void led_off(void) {
