@@ -7,6 +7,11 @@
 
 #include <Arduino.h>
 #define LED 13 // D13 // Metro vs ItsyBitsy here - TODO
+#define WIGGLE_COUNT 12 // full on-off cycle count
+
+// swap these two lines, as required:
+#undef  NO_WIGGLE
+#define NO_WIGGLE
 
 
 // STKSIZE is always a power of two; STKMASK is one less than STKSIZE
@@ -35,30 +40,37 @@ int pop(void) {
 
 
 // Global delay timer
-int spd = 44;
+int spd = 1044; // int spd = 44;
 
 
 // set the pin named in the TOS (top of stack) to OUTPUT (push-pull) mode
-void output(void) {
+void output(void) { // ( n -- )
   pinMode(pop(), OUTPUT);
 }
 
 
-void led_off(void) {
+void led_off(void) { // ( -- )
   push(LED);
   int a = pop();
   digitalWrite(a, LOW);
 }
 
-void led_on(void) {
+void led_on(void) { // ( -- )
   push(LED);
   int a = pop();
   digitalWrite(a, HIGH);
 }
 
+/*
+void del(void) {
+  delay(pop());
+}
+*/
 
-void delay(void) {}
-void defspeed(void) {}
+// normalize spd to a reasonable value of 100, if it is outside 2 thru 22333
+void defspeed(void) { // ( -- )
+  if ((spd < 2) || (spd > 22333) ) { spd = 100; }
+}
 
 /*
 213 // delay TOS # of milliseconds
@@ -73,10 +85,10 @@ void defspeed(void) {}
 */
 
 // Toggle pin at TOS and delay(spd), repeat...
-void wiggle(void) {
-  int a = pop();
+void wiggle(void) { // ( n -- )
+  int a = pop(); // which gpio pin?
   pinMode(a, OUTPUT);
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < WIGGLE_COUNT; i++) {
     digitalWrite(a, HIGH);
     defspeed();
     delay(spd); // delay(100);
@@ -92,7 +104,18 @@ void setup_gpio(void) {
 
 void setup(void) {
   setup_gpio();
-  led_off();
+  led_off(); // initially off
+
+#ifdef NO_WIGGLE
+  delay(200); led_on(); delay(200); led_off();
+  delay(200); led_on(); delay(200); led_off(); delay(200);
+#endif
+
+#ifndef NO_WIGGLE
+  delay(5000);
+  push(LED);
+  wiggle(); // let them know
+#endif
 }
 
 void loop(void) {
