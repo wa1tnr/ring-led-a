@@ -3,12 +3,12 @@
 
 #include <Arduino.h>
 
-/*
- 39 const int STKSIZE = 8;
- 40 const int STKMASK = 7;
- 41 int stack[STKSIZE];
- 42 int p = 0;
-*/
+
+const int STKSIZE = 8;
+const int STKMASK = 7;
+int stack[STKSIZE];
+int p = 0;
+
 
 /*
  63 // push n to top of data stack
