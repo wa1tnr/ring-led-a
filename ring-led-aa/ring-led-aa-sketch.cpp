@@ -2,6 +2,7 @@
 // 23 August 2019  14:43 UTC
 
 #include <Arduino.h>
+#define LED 13 // D13
 
 
 const int STKSIZE = 8;
@@ -30,7 +31,22 @@ int pop() {
 }
 
 
+/*
+261 // make TOS pin an output
+262 NAMED(_output, "output");
+263 void output() {
+264   pinMode(pop(), OUTPUT);
+265 }
+*/
+
+
+void setup_gpio(void) {}
+
+void led_off(void) {}
+
 void setup(void) {
+  setup_gpio();
+  led_off();
 }
 
 void loop(void) {
