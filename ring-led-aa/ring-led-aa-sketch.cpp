@@ -3,5 +3,15 @@
 
 #include <Arduino.h>
 
-void setup(void) {}
-void loop(void) {}
+/*
+ 39 const int STKSIZE = 8;
+ 40 const int STKMASK = 7;
+ 41 int stack[STKSIZE];
+ 42 int p = 0;
+*/
+
+void setup(void) {
+}
+
+void loop(void) {
+}
