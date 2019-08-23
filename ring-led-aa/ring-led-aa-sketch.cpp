@@ -1,12 +1,12 @@
 // ring-led-aa-sketch.cpp
 // 23 August 2019  14:43 UTC
 
-// current, and future old test platform: ItsyBitsyM4, Adafruit
+// CURRENT platform: ItsyBitsyM4, Adafruit
 
-// (future current test platform: Metro M4 Express, Adafruit - SOON)
+// (future test platform: Metro M4 Express, Adafruit - SOON)
 
 #include <Arduino.h>
-#define LED 13 // D13
+#define LED 13 // D13 // Metro vs ItsyBitsy here - TODO
 
 
 const int STKSIZE = 8;
