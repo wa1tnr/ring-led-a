@@ -31,16 +31,16 @@ int pop() {
 }
 
 
-/*
-261 // make TOS pin an output
-262 NAMED(_output, "output");
-263 void output() {
-264   pinMode(pop(), OUTPUT);
-265 }
-*/
+
+// make TOS pin an output
+void output() {
+  pinMode(pop(), OUTPUT);
+}
 
 
-void setup_gpio(void) {}
+void setup_gpio(void) {
+  output();
+}
 
 void led_off(void) {}
 
