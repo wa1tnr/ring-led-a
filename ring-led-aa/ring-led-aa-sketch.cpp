@@ -3,5 +3,5 @@
 
 #include <Arduino.h>
 
-Setup() {}
-Loop() {}
+void setup(void) {}
+void loop(void) {}
