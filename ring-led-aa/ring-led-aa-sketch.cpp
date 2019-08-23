@@ -1,7 +1,9 @@
 // ring-led-aa-sketch.cpp
 // 23 August 2019  14:43 UTC
 
-// test platform: ItsyBitsyM4
+// current, and future old test platform: ItsyBitsyM4, Adafruit
+
+// (future current test platform: Metro M4 Express, Adafruit - SOON)
 
 #include <Arduino.h>
 #define LED 13 // D13
