@@ -21,14 +21,14 @@ void push(int n) {
 }
 
 
-/*
- 69 // return top of stack
- 70 int pop() {
- 71   int n = TOS;
- 72   p = (p - 1)& STKMASK;
- 73   return n;
- 74 }
-*/
+
+// return top of stack
+int pop() {
+  int n = TOS;
+  p = (p - 1)& STKMASK;
+  return n;
+}
+
 
 void setup(void) {
 }
