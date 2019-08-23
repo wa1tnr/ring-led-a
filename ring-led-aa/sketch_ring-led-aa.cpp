@@ -101,12 +101,39 @@ void wiggle(void) { // ( n -- )
   }
 }
 
+// - - - -   populate stack sample values   - - -
+void populate_stack_for_test(void) {
+}
+
+// - - - -   printing   - - - -
+void print_stack(void) {
+  int a = -99; // debug
+  for (int i=0; i<STKSIZE; i++) {
+    Serial.print("element: ");
+    Serial.print(i);
+    Serial.print("  value: ");
+    a = pop(); // harmless as long as entire stack gets iterated.
+    Serial.println(a);
+  }
+  
+}
+
+// - - - -   setups   - - - -
+
 void setup_gpio(void) {
   push(LED); // say which port pin's mode is to be set as an output, now
   output();
 }
 
+void setup_serial(void) {
+  Serial.begin(9600);
+  // while (!Serial); // hold for activity
+  delay(500);
+  Serial.println("Serial active.");
+}
+
 void setup(void) {
+  setup_serial();
   setup_gpio();
   led_off(); // initially off
 
@@ -121,6 +148,9 @@ void setup(void) {
   push(LED);
   wiggle(); // let them know
 #endif
+
+  populate_stack_for_test();
+  print_stack();
 }
 
 void loop(void) {
